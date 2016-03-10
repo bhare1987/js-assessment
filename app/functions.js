@@ -2,11 +2,11 @@ exports = (typeof window === 'undefined') ? global : window;
 
 exports.functionsAnswers = {
   argsAsArray : function(fn, arr) {
-    return fn(arr[0], arr[1], arr[2]);
+    return fn.apply(this, arr);
   },
 
   speak : function(fn, obj) {
-
+    return fn.call(obj)
   },
 
   functionFunction : function(str) {
@@ -16,11 +16,16 @@ exports.functionsAnswers = {
   },
 
   makeClosures : function(arr, fn) {
-
+    // var result = [];
+    // for (var i = 0; i < arr.length; i++) {
+    //   return result.push(function(arr[i])(return fn(arr[i])));
+    // }
   },
 
   partial : function(fn, str1, str2) {
-
+    return function(str3){
+      return fn(str1, str2, str3);
+    }
   },
 
   useArguments : function() {
@@ -32,14 +37,16 @@ exports.functionsAnswers = {
   },
 
   callIt : function(fn) {
-      var args = [].slice.call(arguments);
-      fn.apply(null, args);
-
+    var args = [].slice.call(arguments);
+    return function() {
+      return fn.apply(this, args.concat(
+        Array.prototype.slice.call(arguments)));
+      }
   },
 
   partialUsingArguments : function(fn) {
     var args = [].slice.call(arguments);
-    args.bind(Math.random(), Math.random(), Math.random())
+    args.bind()
   },
 
   curryIt : function(fn) {

@@ -14,6 +14,6 @@ exports.numbersAnswers = {
   },
 
   multiply: function(a, b) {
-    return toFloat(a * b);
+    return Number(a*b).toFloat();
   }
 };
