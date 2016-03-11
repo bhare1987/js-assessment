@@ -2,11 +2,11 @@ exports = (typeof window === 'undefined') ? global : window;
 
 exports.numbersAnswers = {
   valueAtBit: function(num, bit) {
-    return Number(num).toString(2);
+    return num&bit;
   },
 
   base10: function(str) {
-    return parseInt(str, 10);
+    return parseInt(str, 2);
   },
 
   convertToBinary: function(num) {
@@ -14,6 +14,6 @@ exports.numbersAnswers = {
   },
 
   multiply: function(a, b) {
-    return Number(a*b).toFloat();
+    return Number((a*b).toPrecision(3));
   }
 };
